@@ -1,0 +1,27 @@
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #fff;
+  color: #111;
+  margin: 0;
+  padding: 2rem;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+h1, h2 {
+  color: #1f2937;
+}
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+footer {
+  margin-top: 3rem;
+  font-size: 0.9em;
+  color: #666;
+}
