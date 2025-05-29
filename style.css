@@ -28,6 +28,57 @@
   box-sizing: border-box;
 }
 
+.nav-horizontal {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem; /* ruimte tussen links */
+  justify-content: center; /* of start, end, space-between */
+}
+
+.nav-horizontal li {
+  display: inline;
+}
+
+.nav-horizontal a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.nav-horizontal a:hover,
+.nav-horizontal a:focus {
+  color: #0077cc;
+  border-bottom: 2px solid #0077cc;
+}
+.hero {
+  background: linear-gradient(to right, #f8f8f8, #ffffff);
+  border-bottom: 1px solid #ddd;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.75rem;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: #333;
+}
+
+.hero blockquote {
+  font-style: italic;
+  color: #666;
+  margin-top: 2rem;
+}
+
+
 html, body {
   font-family: var(--font-body);
   font-size: 16px;
