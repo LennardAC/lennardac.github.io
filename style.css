@@ -1,27 +1,154 @@
+/* LennardAC.Dev - CSS Stylesheet */
+/* Copyright © 2025 Lennard A. Chrispijn-Wildschut */
 
-body {
-  font-family: system-ui, sans-serif;
-  background: #fff;
-  color: #111;
+:root {
+  --font-body: 'Verdana', sans-serif;
+  --font-code: 'Courier New', monospace;
+
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-secondary: #2A2E37;
+  --color-accent: #1FB6FF;
+  --color-contrast: #F4F4F5;
+  --color-cta: #FF6A3D;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+
+  --border-radius: 0.5rem;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* General reset */
+* {
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html, body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* Layout Containers */
 .container {
-  max-width: 800px;
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: var(--spacing-md) 0;
 }
-h1, h2 {
-  color: #1f2937;
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-secondary);
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
 }
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+code, pre {
+  font-family: var(--font-code);
+  background-color: var(--color-contrast);
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius);
+  display: block;
+  overflow-x: auto;
+}
+
+/* Links & Buttons */
 a {
-  color: #2563eb;
+  color: var(--color-accent);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
+
 a:hover {
-  text-decoration: underline;
+  color: var(--color-cta);
 }
-footer {
-  margin-top: 3rem;
-  font-size: 0.9em;
-  color: #666;
+
+button, .btn {
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background-color var(--transition-fast);
+}
+
+button:hover, .btn:hover {
+  background-color: var(--color-cta);
+}
+
+/* Sections */
+section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.header, .footer {
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: var(--spacing-md) 0;
+  text-align: center;
+}
+
+/* Utility */
+.text-center { text-align: center; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* Quote / Manifest style */
+.manifest {
+  font-style: italic;
+  color: var(--color-secondary);
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--spacing-sm);
+  margin: var(--spacing-md) 0;
+}
+
+/* Tagline / Highlight block */
+.tagline {
+  font-weight: bold;
+  color: var(--color-cta);
+  font-size: 1.25rem;
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: var(--spacing-xs);
+  background: var(--color-contrast);
+  z-index: 1000;
 }
