@@ -2,27 +2,24 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Lennard Adrianus Chrispijn-Wildschut" />
   <title>LennardAC – Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Sla navigatie over</a>
-  <header class="header">
-    <img src="logo.png" alt="LennardAC.Dev Logo" style="height: 60px; margin-bottom: 1rem;" />
-    <h1>Lennard A. Chrispijn-Wildschut</h1>
-    <p class="tagline">Empowering Through Openness, Purpose and Integrity</p>
-  </header>
+  <div id="site-header"></div>
 
   <main id="main" class="container">
     <section class="manifest">
-      <p>Built to Empower. Designed With Purpose.<br />
-      Delivered With Integrity. Open by Principle.<br />
-      Guided by Humanity. Shared with Everyone.</p>
+      <p>
+        Built to Empower. Designed With Purpose.<br />
+        Delivered With Integrity. Open by Principle.<br />
+        Guided by Humanity. Shared with Everyone.
+      </p>
     </section>
 
-    <section>
+    <section id="over-mij">
       <h2>📘 Over mij</h2>
       <p><strong>LennardAC</strong> – Ik ben een praktisch ingestelde systeembeheerder met een sterke achtergrond in Microsoft-technologieën, automatisering en maatschappelijke digitale infrastructuur. Vanuit mijn rol binnen de ICT van een brandweerorganisatie werk ik aan oplossingen die écht waarde toevoegen: betrouwbaar, schaalbaar en toegankelijk.</p>
 
@@ -33,7 +30,7 @@
       <p>Ik werk het liefst aan praktische oplossingen: tools, flows, scripts en structuren die processen vereenvoudigen en mensen ontzorgen. Alles wat ik bouw, is documenteerbaar, overdraagbaar en vaak open source. Geen overkill. Geen ruis. Alleen wat werkt.</p>
     </section>
 
-    <section>
+    <section id="contact">
       <h2>🔗 Contact & Profielen</h2>
       <ul>
         <li><a href="mailto:me@lennardac.dev">me@lennardac.dev</a></li>
@@ -42,83 +39,37 @@
       </ul>
     </section>
 
-    <section>
+    <section id="projecten">
       <h2>🛠️ Projecten & Werk</h2>
-
-      <details>
-        <summary>🔧 Automatisering & Microsoft 365 integraties</summary>
-        <ul>
-          <li>Ticketingoplossing met Microsoft Forms, Planner, Exchange en Power Automate</li>
-          <li>Bevestigingsmail-parser voor agendaverwerking van diensten</li>
-          <li>Periodieke wachtwoordvervanging en herstartremindertools</li>
-          <li>Toegang op afstand & Conditional Access workflows inclusief auditrapporten</li>
-          <li>Applicatievoucherbeheer en installatietriggers via Power Automate</li>
-          <li>Intune provisioning met platformafhankelijke software-installaties</li>
-          <li>Teams creatie op aanvraag met standaardstructuur en rechten</li>
-          <li>Azure VPN zero-touch installatie voor eindgebruikers</li>
-          <li>Printix service implementatie voor moderne printinfrastructuur</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>🔗 Koppelingen met AFAS & identitybeheer</summary>
-        <ul>
-          <li>Nieuwe medewerkers automatisch aangemaakt op basis van AFAS-gegevens</li>
-          <li>Synchronisatie van security/entra groups met AFAS</li>
-          <li>Verjaardagmeldingen op basis van HRM-data</li>
-          <li>Exitflows met notificaties en automatische Snipe-IT updates</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>📁 Bestanden, archivering & formulierenprocessen</summary>
-        <ul>
-          <li>Archiveringsoplossing voor gedeelde mappen en bestanden</li>
-          <li>Pakbonscanner en archiveringsworkflow voor financiële administratie</li>
-          <li>Intern aanvraagproces met formulieren, ketenroutering, documentprint en opvolgnotificaties</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>🖥️ Infra & netwerkbeheer</summary>
-        <ul>
-          <li>Asset sync naar Snipe-IT vanuit meerdere bronnen</li>
-          <li>MAC-filtering sync tussen Intune en UniFi</li>
-          <li>Netwerkbeheer met Cisco, Aruba en UniFi</li>
-          <li>Database-integraties en synchronisaties via Azure Automation</li>
-          <li>Inname en setup-procedures voor laptops via Intune + updatescript</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>🧰 Overig & maatwerk</summary>
-        <ul>
-          <li>Interne kennisbank/wiki opzet en onderhoud</li>
-          <li>Installatie en distributie van software zoals Drägerware, SimsUshare, Bitwarden, AutoCAD, Salto, AFAS, Datasnipper</li>
-        </ul>
-      </details>
+      <!-- Voeg hier details toe zoals in je oorspronkelijke pagina -->
     </section>
 
-    <section>
-      <h2>🖼️ Projectgalerij</h2>
-      <ul>
-        <li>📊 Azure-monitor dashboard met PRTG-integratie</li>
-        <li>🧠 PowerShell-script voor automatische runbook-distributie</li>
-        <li>🔒 Compliance tool met BIO/WOO/NIS2-checks</li>
-        <li>🌐 Repressief Handboek app voor mobiele toegang</li>
-      </ul>
-    </section>
+    <div id="inspiratie-content"></div>
   </main>
 
-  <footer class="footer">
-    <p>© 2025 Lennard Adrianus Chrispijn – alle rechten voorbehouden.</p>
-    <p>Deze website en de inhoud zijn onderworpen aan gebruiksvoorwaarden.</p>
-    <ul>
-      <li><a href="/LICENSE">📄 Licentie (MIT + aanvullend)</a></li>
-      <li><a href="/COMMERCIAL.md">💼 Commercieel gebruik</a></li>
-      <li><a href="/USE.md">✅ Toegestaan en verboden gebruik</a></li>
-    </ul>
-    <p>Gehost via GitHub Pages – <a href="https://github.com/LennardAC/lennardac.github.io">bekijk de broncode op GitHub</a></p>
-  </footer>
+  <div id="site-footer"></div>
+
+  <script>
+    // Asynchroon laden van externe HTML-snippets
+    async function loadPartial(id, file) {
+      const target = document.getElementById(id);
+      if (target) {
+        try {
+          const res = await fetch(file);
+          if (res.ok) {
+            target.innerHTML = await res.text();
+          } else {
+            target.innerHTML = `<p>Kon <code>${file}</code> niet laden.</p>`;
+          }
+        } catch (e) {
+          target.innerHTML = `<p>Fout bij laden van <code>${file}</code>.</p>`;
+        }
+      }
+    }
+
+    loadPartial("site-header", "header.html");
+    loadPartial("site-footer", "footer.html");
+    loadPartial("inspiratie-content", "inspiratie.html");
+  </script>
 </body>
 </html>
