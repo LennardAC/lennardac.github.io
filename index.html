@@ -9,48 +9,16 @@
 </head>
 <body>
   <div id="site-header"></div>
-
-  <main id="main" class="container">
-    <section class="manifest">
-      <p>
-        Built to Empower. Designed With Purpose.<br />
-        Delivered With Integrity. Open by Principle.<br />
-        Guided by Humanity. Shared with Everyone.
-      </p>
-    </section>
-
-    <section id="over-mij">
-      <h2>📘 Over mij</h2>
-      <p><strong>LennardAC</strong> – Ik ben een praktisch ingestelde systeembeheerder met een sterke achtergrond in Microsoft-technologieën, automatisering en maatschappelijke digitale infrastructuur. Vanuit mijn rol binnen de ICT van een brandweerorganisatie werk ik aan oplossingen die écht waarde toevoegen: betrouwbaar, schaalbaar en toegankelijk.</p>
-
-      <p>Mijn werk begint bij de mens, niet bij de techniek. Of het nu gaat om hulpverleners die snel toegang nodig hebben tot systemen, of maatschappelijke organisaties met beperkte middelen — mijn doel is om technologie eenvoudiger, veiliger en menselijker te maken.</p>
-
-      <p>Ik geloof dat IT niet elitair hoeft te zijn. Automatiseren zonder meerprijs, processen versimpelen, systemen begrijpelijk maken — dat is waar ik voor sta. Mijn aanpak is open, eerlijk en menselijk. Geïnspireerd door <strong>Alan Turing</strong> (technisch genie met menselijke blik) en <strong>Henry Dunant</strong> (grondlegger van het Rode Kruis), combineer ik technische precisie met maatschappelijke betrokkenheid. Mijn motto: <em>Tutti Fratelli</em> – we zijn allemaal broeders.</p>
-
-      <p>Ik werk het liefst aan praktische oplossingen: tools, flows, scripts en structuren die processen vereenvoudigen en mensen ontzorgen. Alles wat ik bouw, is documenteerbaar, overdraagbaar en vaak open source. Geen overkill. Geen ruis. Alleen wat werkt.</p>
-    </section>
-
-    <section id="contact">
-      <h2>🔗 Contact & Profielen</h2>
-      <ul>
-        <li><a href="mailto:me@lennardac.dev">me@lennardac.dev</a></li>
-        <li><a href="https://github.com/LennardAC">GitHub.com/LennardAC</a></li>
-        <li><a href="https://lennardac.dev">lennardac.dev</a></li>
-      </ul>
-    </section>
-
-    <section id="projecten">
-      <h2>🛠️ Projecten & Werk</h2>
-      <!-- Voeg hier details toe zoals in je oorspronkelijke pagina -->
-    </section>
-
+    <div id="manifest"></div>
+    <div id="over-mij-content"></div>
+    <div id="projecten-content"></div>
+    <div id="contact-content"></div>
     <div id="inspiratie-content"></div>
   </main>
 
   <div id="site-footer"></div>
 
   <script>
-    // Asynchroon laden van externe HTML-snippets
     async function loadPartial(id, file) {
       const target = document.getElementById(id);
       if (target) {
@@ -68,7 +36,11 @@
     }
 
     loadPartial("site-header", "header.html");
+    loadPartial("manifest", "manifest.html");
     loadPartial("site-footer", "footer.html");
+    loadPartial("over-mij-content", "over-mij.html");
+    loadPartial("projecten-content", "projecten.html");
+    loadPartial("contact-content", "contact.html");
     loadPartial("inspiratie-content", "inspiratie.html");
   </script>
 </body>
