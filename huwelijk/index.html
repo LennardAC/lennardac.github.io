@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Huwelijkscadeau – Lennard & Dylan</title>
   <meta name="description" content="Huwelijkscadeaupagina van Lennard & Dylan – draag bij aan onze herinneringen i.p.v. spullen." />
+  <!-- Favicon (inline SVG hartje) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="%23ec4899" d="M47.5 8C42 8 36.9 10.8 34 15c-2.9-4.2-8-7-13.5-7C11.7 8 6 13.7 6 20.5 6 37 32 56 32 56s26-19 26-35.5C58 13.7 52.3 8 47.5 8z"/></svg>' />
   <style>
     :root{
       --bg:#f7f7f8; --card:#ffffff; --ink:#111827; --muted:#6b7280; --brand:#7c3aed; --brand-2:#ec4899; --ok:#10b981; --border:#e5e7eb;
@@ -37,6 +39,10 @@
     .btn{appearance:none;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
     .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:white}
     .btn.ghost{background:#f3f4f6;color:#111827}
+    .qr{height:56px;width:56px;border-radius:10px;border:1px solid var(--border);background:#fff;padding:6px}
+    .totals h3{margin:0 0 8px}
+    .totals .progress{height:16px}
+    .totals .amounts{font-size:13px}
     .donors{margin-top:12px;border-top:1px dashed var(--border);padding-top:12px}
     .donors details{background:#fafafa;border:1px solid var(--border);border-radius:12px;padding:10px}
     .donors summary{cursor:pointer;font-weight:700}
@@ -76,7 +82,8 @@
         <h2>Hoe werkt doneren?</h2>
         <ol>
           <li>Kies een doel hieronder en klik op <strong>Betaal mee</strong>.</li>
-          <li>Betaal via je eigen betaalverzoek/QR (iDEAL) of per overschrijving.</li>
+          <li>Betaal via je ING‑betaalverzoek/QR (iDEAL) of per overschrijving.</li>
+          <li>Contant mag ook: bijvoorbeeld in een envelop met een lief briefje of wens erbij — vinden wij hartstikke leuk. 💌</li>
           <li>Optioneel: laat je naam en korte wens achter in de omschrijving.</li>
         </ol>
         <p><strong>IBAN</strong><br>
@@ -84,120 +91,8 @@
           t.n.v. <em>Hr&nbsp;L.A. Chrispijn</em> en/of <em>Hr&nbsp;D. Wildschut</em>
         </p>
         <div class="cta">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">Betaal mee</a>
-          <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
-        </div>
-        <p class="muted" style="margin-top:10px">Alle betalingen komen <strong>direct</strong> bij ons binnen en gaan <strong>niet</strong> via een derde partij of platform dat een percentage inhoudt. Deze pagina is door Lennard zelf gemaakt.</p>
-        <p class="muted">Sla deze pagina op; we updaten de voortgangsbalken handmatig op basis van ontvangen bijdragen.</p>
-        <p class="muted">Vragen of aanpassingen? Mail <a href="mailto:me@lennardac.dev">me@lennardac.dev</a>.</p>
-      </aside>
-    </div>
-
-    <!-- DOELEN -->
-    <section class="goals" id="goals"></section>
-
-    <footer>
-      <p>© 2025 Lennard & Dylan — bedankt voor jullie liefde en steun.</p>
-    </footer>
-  </div>
-
-<script>
-  // ====== CONFIG ======
-  // Vul/aanpassen: doelbedragen, huidige stand, donateurs en betaallinks/QR.
-  const goals = [
-    {
-      id: "camper",
-      title: "Huwelijksreis – Camperhuur",
-      desc: "Een paar weken vrijheid op wielen – wakker worden waar de zon schijnt.",
-      target: 2500,
-      current: 0,
-      image: "https://www.pleinair.it/wp-content/uploads/2022/07/2022-07-26-roadsurfer_1.jpg",
-      payLink: "#", // vervang door je ING-betaalverzoek of iDEAL-link
-      donors: []
-    },
-    {
-      id: "diner",
-      title: "Huwelijksreis – Uit eten voor 2",
-      desc: "Een avond tafelen tijdens de reis – proosten op vandaag en morgen.",
-      target: 200,
-      current: 0,
-      image: "https://cdn.culinaireambiance.com/storage/wp-content/uploads/2023/02/valentijn_resize_1400.png",
-      payLink: "#",
-      donors: []
-    },
-    {
-      id: "souvenirs",
-      title: "Huwelijksreis – Souvenirs",
-      desc: "Kleine herinneringen die thuis een plek krijgen.",
-      target: 500,
-      current: 0,
-      image: "https://www.radbag.nl/blog/wp-content/uploads/2016/06/new-header.png",
-      payLink: "#",
-      donors: []
-    },
-    {
-      id: "huwelijksdiner",
-      title: "Huwelijksdiner",
-      desc: "Intiem private dining bij La Cocotte met onze naasten.",
-      target: 2000,
-      current: 0,
-      image: "https://vanderwaaltuinendesign.nl/wp-content/uploads/2024/02/Tuinontwerp-en-tuinaaneg-restauranttuin-Rhoon.jpg",
-      payLink: "#",
-      donors: []
-    },
-    {
-      id: "terras",
-      title: "Een nieuw terras",
-      desc: "Onze buitenwoonkamer waar we koffie drinken en vrienden ontvangen.",
-      target: 3000,
-      current: 0,
-      image: "https://images.ctfassets.net/q86gtiaxvkje/7urTbchS4QmKcoq3mFveMS/a56dba69c744679dd4a36e1b52d18a31/Felixwood-wpc-composiet-terrasplanken__1_.jpeg?bg=%2300000000&fit=thumb&w=1440&f=center&q=80&fm=webp",
-      payLink: "#",
-      donors: []
-    },
-    {
-      id: "overkapping",
-      title: "Een nieuwe overkapping in de tuin",
-      desc: "Droog in de regen - het hele jaar door buiten.",
-      target: 3000,
-      current: 0,
-      image: "https://www.tuinspecialist.nl/media/catalog/product/cache/3450c7c5f0abaf426863f7c4e407f8cc/1/e/1e_6m_structure_shed_br_m_landscape_01.jpg",
-      payLink: "#",
-      donors: []
-    }
-  ];
-
-  const currency = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-
-  function renderGoals(){
-    const root = document.getElementById('goals');
-    root.innerHTML = '';
-
-    goals.forEach(g => {
-      const totalGiven = g.donors.reduce((s,d)=> s + (Number(d.amount)||0), 0);
-      const current = Math.max(g.current, totalGiven); // toont iig ontvangen donorsom
-      const pct = Math.min(Math.round((current / g.target) * 100), 100);
-
-      const el = document.createElement('article');
-      el.className = 'card goal';
-      el.innerHTML = `
-        <div class="media"><img src="${g.image}" alt="${g.title}"></div>
-        <div class="body">
-          <div class="row" style="margin-bottom:6px">
-            <div>
-              <h3 style="margin-bottom:4px">${g.title}</h3>
-              ${g.desc ? `<p class=\"muted\" style=\"margin:0\">${escapeHTML(g.desc)}</p>` : ``}
-            </div>
-            <span class="pill">${pct}%</span>
-          </div>
-          <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
-          <div class="row" style="margin-top:8px">
-            <div class="amounts">
-              <span>Gestort: <strong>${currency.format(current)}</strong></span>
-              <span>Doel: <strong>${currency.format(g.target)}</strong></span>
-            </div>
-            <div class="cta">
               <a class="btn primary" href="${g.payLink}" target="_blank" rel="noopener">Betaal mee</a>
+              <img class="qr" src="${g.qr || (g.id + '.png')}" alt="QR ${g.title}" onerror="this.style.display='none'" title="Scan om direct te betalen">
               <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
             </div>
           </div>
@@ -241,6 +136,29 @@
   }
 
   renderGoals();
+  renderTotals();
+
+  function renderTotals(){
+    const totalsEl = document.getElementById('totals');
+    const target = goals.reduce((s,g)=> s + (Number(g.target)||0), 0);
+    const given = goals.reduce((s,g)=> {
+      const donorsSum = (g.donors||[]).reduce((x,d)=> x + (Number(d.amount)||0), 0);
+      const current = Math.max(Number(g.current)||0, donorsSum);
+      return s + current;
+    }, 0);
+    const pct = Math.min(Math.round((given/target)*100), 100);
+    const nf = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    totalsEl.innerHTML = `
+      <h3>Totaal voortgang</h3>
+      <div class="progress" aria-label="totale voortgang"><span style="width:${pct}%"></span></div>
+      <div class="row" style="margin-top:8px">
+        <div class="amounts">
+          <span>Gestort totaal: <strong>${nf.format(given)}</strong></span>
+          <span>Doel totaal: <strong>${nf.format(target)}</strong></span>
+        </div>
+        <span class="pill">${pct}%</span>
+      </div>`;
+  }
 </script>
 </body>
 </html>
