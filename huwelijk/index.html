@@ -44,45 +44,56 @@
     .pill{background:#eef2ff;color:#3730a3;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700}
     footer{margin:32px 0 0;color:var(--muted);font-size:12px;text-align:center}
     .intro p{line-height:1.75}
-    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#111827;color:#e5e7eb;padding:2px 6px;border-radius:6px;font-size:12px}
     .note{background:#fef3c7;border:1px solid #fde68a;color:#92400e;padding:10px;border-radius:10px}
   </style>
 </head>
 <body>
   <div class="container">
-     <header class="hero">
+    <header class="hero">
       <h1>Welkom op onze huwelijks­pagina</h1>
       <p>Op <strong>15 september 2025</strong> geven wij elkaar het jawoord in het stadhuis van Rotterdam.<br>
       Geen grootse bruiloft vol pracht en praal, maar een intiem moment met de mensen die ons het meest dierbaar zijn.<br>
       Voor ons draait deze dag om wat écht telt: <strong>liefde, herinneringen en samen zijn</strong>.</p>
     </header>
 
-    <section class="card pad intro">
-      <h2>Maak samen met ons herinneringen</h2>
-      <p>In plaats van een traditioneel feest, hebben we ervoor gekozen om onze dag af te sluiten met een bijzonder diner bij <em>La Cocotte</em> in Hoogvliet — een avond vol warmte, goed eten en mooie gesprekken.</p>
-      <p>We hebben geen verlanglijst vol spullen. Wat we wél willen, is samen blijven bouwen aan ons leven:</p>
-      <ul>
-        <li>Oud worden in ons huis, waar elke kamer een verhaal vertelt</li>
-        <li>Genieten van onze groene tuin, onze plek van rust en ontspanning</li>
-        <li>Er samen op uit gaan met een camper, om nieuwe avonturen te beleven in alle vrijheid</li>
-      </ul>
-      <p>Jullie aanwezigheid op deze dag is ons grootste cadeau. Maar wie ons toch wil verrassen, kan bijdragen aan deze dromen — aan herinneringen die we ons hele leven zullen koesteren.</p>
-      <p><strong>Met liefde,<br>Lennard & Dylan ❤️</strong></p>
-      <div class="note"><strong>Privacy:</strong> we tonen alleen namen/bedragen die door de gever gedeeld mogen worden. Liever anoniem? Zet dat gerust in je omschrijving.</div>
-    </section>
+    <!-- TOP: twee kaarten naast elkaar op desktop -->
+    <div class="grid">
+      <section class="card pad intro">
+        <h2>Maak samen met ons herinneringen</h2>
+        <p>In plaats van een traditioneel feest, sluiten we de dag af met een intiem diner bij <em>La Cocotte</em> in Hoogvliet — een avond vol warmte, goed eten en mooie gesprekken.</p>
+        <p>We hebben geen verlanglijst vol spullen. Wat we wél willen, is samen blijven bouwen aan ons leven:</p>
+        <ul>
+          <li>Oud worden in ons huis, waar elke kamer een verhaal vertelt</li>
+          <li>Genieten van onze groene tuin, onze plek van rust en ontspanning</li>
+          <li>Er samen op uit gaan met een camper, om nieuwe avonturen te beleven in alle vrijheid</li>
+        </ul>
+        <p>Jullie aanwezigheid op deze dag is ons grootste cadeau. Wil je ons toch verrassen, dan kun je hieronder bijdragen aan één van de doelen — aan herinneringen die we ons hele leven zullen koesteren.</p>
+        <p><strong>Met liefde,<br>Lennard & Dylan ❤️</strong></p>
+        <div class="note"><strong>Privacy:</strong> we tonen alleen namen/bedragen die door de gever gedeeld mogen worden. Liever anoniem? Zet dat gerust in je omschrijving.</div>
+      </section>
 
       <aside class="card pad">
         <h2>Hoe werkt doneren?</h2>
         <ol>
           <li>Kies een doel hieronder en klik op <strong>Betaal mee</strong>.</li>
-          <li>Betaal via je eigen betaalverzoek/QR (iDEAL/Tikkie/overschrijving).</li>
+          <li>Betaal via je eigen betaalverzoek/QR (iDEAL) of per overschrijving.</li>
           <li>Optioneel: laat je naam en korte wens achter in de omschrijving.</li>
         </ol>
-        <p class="muted">Tip: Sla deze pagina op; we updaten de voortgangsbalken handmatig op basis van ontvangen bijdragen.</p>
+        <p><strong>IBAN</strong><br>
+          NL76&nbsp;INGB&nbsp;0797&nbsp;6643&nbsp;78<br>
+          t.n.v. <em>Hr&nbsp;L.A. Chrispijn</em> en/of <em>Hr&nbsp;D. Wildschut</em>
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Betaal mee</a>
+          <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Alle betalingen komen <strong>direct</strong> bij ons binnen en gaan <strong>niet</strong> via een derde partij of platform dat een percentage inhoudt. Deze pagina is door Lennard zelf gemaakt.</p>
+        <p class="muted">Sla deze pagina op; we updaten de voortgangsbalken handmatig op basis van ontvangen bijdragen.</p>
         <p class="muted">Vragen of aanpassingen? Mail <a href="mailto:me@lennardac.dev">me@lennardac.dev</a>.</p>
       </aside>
     </div>
 
+    <!-- DOELEN -->
     <section class="goals" id="goals"></section>
 
     <footer>
@@ -101,10 +112,8 @@
       target: 2500,
       current: 0,
       image: "https://www.pleinair.it/wp-content/uploads/2022/07/2022-07-26-roadsurfer_1.jpg",
-      payLink: "#", // vervang door je Tikkie/ideal/iban-link
-      donors: [
-        // { name: "Anoniem", amount: 50, note: "Veel liefde!" }
-      ]
+      payLink: "#", // vervang door je ING-betaalverzoek of iDEAL-link
+      donors: []
     },
     {
       id: "diner",
@@ -175,7 +184,10 @@
         <div class="media"><img src="${g.image}" alt="${g.title}"></div>
         <div class="body">
           <div class="row" style="margin-bottom:6px">
-            <h3>${g.title}</h3>
+            <div>
+              <h3 style="margin-bottom:4px">${g.title}</h3>
+              ${g.desc ? `<p class=\"muted\" style=\"margin:0\">${escapeHTML(g.desc)}</p>` : ``}
+            </div>
             <span class="pill">${pct}%</span>
           </div>
           <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
@@ -186,7 +198,7 @@
             </div>
             <div class="cta">
               <a class="btn primary" href="${g.payLink}" target="_blank" rel="noopener">Betaal mee</a>
-              <button class="btn ghost" onclick="copyIban('${g.id}')">Kopieer IBAN</button>
+              <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
             </div>
           </div>
           ${renderDonors(g)}
@@ -217,9 +229,8 @@
     `;
   }
 
-  function copyIban(goalId){
-    // Vervang door jullie IBAN
-    const IBAN = 'NL00INGB0123456789';
+  function copyIban(){
+    const IBAN = 'NL76INGB0797664378';
     navigator.clipboard.writeText(IBAN).then(()=>{
       alert('IBAN gekopieerd: ' + IBAN);
     })
