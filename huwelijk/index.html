@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Huwelijkscadeau – Lennard & Dylan</title>
+  <meta name="description" content="Huwelijkscadeaupagina van Lennard & Dylan – draag bij aan onze herinneringen i.p.v. spullen." />
+  <style>
+    :root{
+      --bg:#f7f7f8; --card:#ffffff; --ink:#111827; --muted:#6b7280; --brand:#7c3aed; --brand-2:#ec4899; --ok:#10b981; --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family: Verdana, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header.hero{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;border-radius:24px;padding:32px;box-shadow:0 10px 30px rgba(124,58,237,.25)}
+    .hero h1{font-size:clamp(28px,3.5vw,42px);margin:0 0 8px}
+    .hero p{margin:8px 0 0;color:rgba(255,255,255,.9);line-height:1.6}
+    .grid{display:grid;gap:20px;margin-top:24px}
+    @media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 6px 18px rgba(17,24,39,.06)}
+    .card.pad{padding:20px}
+    .goals{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:720px){.goals{grid-template-columns:1fr 1fr}}
+    .goal{overflow:hidden}
+    .goal .media{height:180px;background:#ddd;display:block}
+    .goal .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .goal .body{padding:16px}
+    .goal h3{margin:0 0 6px;font-size:20px}
+    .muted{color:var(--muted)}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .progress{width:100%;height:14px;background:#eef2ff;border-radius:999px;overflow:hidden;border:1px solid #dbeafe}
+    .progress > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .6s ease}
+    .amounts{display:flex;gap:10px;font-size:12px;color:var(--muted)}
+    .amounts strong{color:var(--ink)}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{appearance:none;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:white}
+    .btn.ghost{background:#f3f4f6;color:#111827}
+    .donors{margin-top:12px;border-top:1px dashed var(--border);padding-top:12px}
+    .donors details{background:#fafafa;border:1px solid var(--border);border-radius:12px;padding:10px}
+    .donors summary{cursor:pointer;font-weight:700}
+    .donors ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+    .pill{background:#eef2ff;color:#3730a3;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700}
+    footer{margin:32px 0 0;color:var(--muted);font-size:12px;text-align:center}
+    .intro p{line-height:1.75}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#111827;color:#e5e7eb;padding:2px 6px;border-radius:6px;font-size:12px}
+    .note{background:#fef3c7;border:1px solid #fde68a;color:#92400e;padding:10px;border-radius:10px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Lennard & Dylan – Huwelijkscadeau</h1>
+      <p>Op <strong>15 september 2025</strong> trouwen we in het stadhuis van Rotterdam (09:00) en vieren we dit 's avonds met een intiem diner bij <em>La Cocotte</em> in Hoogvliet (18:00). We kiezen voor herinneringen in plaats van spullen: bijdragen aan ons huis, onze groene tuin, het huwelijksdiner en een camperreis samen. ❤</p>
+    </header>
+
+    <div class="grid">
+      <section class="card pad intro">
+        <h2>Maak samen met ons herinneringen</h2>
+        <p>Het mooiste cadeau is dat je erbij bent. Wil je ons toch iets geven, dan maak je ons enorm blij met een bijdrage aan één van onderstaande doelen. Zo help je ons <strong>zorgzaam</strong>, <strong>liefdevol</strong> en vooral <strong>samen</strong> verder te bouwen aan ons leven: oud worden in ons huis, genieten van onze tuin en de vrijheid van reizen met een camper.</p>
+        <div class="note"><strong>Privacy:</strong> we tonen alleen namen/bedragen die door de gever gedeeld mogen worden. Liever anoniem? Zet dat gerust in je omschrijving.</div>
+      </section>
+
+      <aside class="card pad">
+        <h2>Hoe werkt doneren?</h2>
+        <ol>
+          <li>Kies een doel hieronder en klik op <strong>Betaal mee</strong>.</li>
+          <li>Betaal via je eigen betaalverzoek/QR (iDEAL/Tikkie/overschrijving).</li>
+          <li>Optioneel: laat je naam en korte wens achter in de omschrijving.</li>
+        </ol>
+        <p class="muted">Tip: Sla deze pagina op; we updaten de voortgangsbalken handmatig op basis van ontvangen bijdragen.</p>
+        <p class="muted">Vragen of aanpassingen? Mail <a href="mailto:me@lennardac.dev">me@lennardac.dev</a>.</p>
+      </aside>
+    </div>
+
+    <section class="goals" id="goals"></section>
+
+    <footer>
+      <p>© 2025 Lennard & Dylan — bedankt voor jullie liefde en steun.</p>
+    </footer>
+  </div>
+
+<script>
+  // ====== CONFIG ======
+  // Vul/aanpassen: doelbedragen, huidige stand, donateurs en betaallinks/QR.
+  const goals = [
+    {
+      id: "camper",
+      title: "Huwelijksreis – Camperhuur",
+      target: 2500,
+      current: 0,
+      image: "https://picsum.photos/seed/camper/800/450",
+      payLink: "#", // vervang door je Tikkie/ideal/iban-link
+      donors: [
+        // { name: "Anoniem", amount: 50, note: "Veel liefde!" }
+      ]
+    },
+    {
+      id: "diner",
+      title: "Huwelijksreis – Uit eten voor 2",
+      target: 200,
+      current: 0,
+      image: "https://picsum.photos/seed/diner/800/450",
+      payLink: "#",
+      donors: []
+    },
+    {
+      id: "souvenirs",
+      title: "Huwelijksreis – Souvenirs",
+      target: 500,
+      current: 0,
+      image: "https://picsum.photos/seed/souvenirs/800/450",
+      payLink: "#",
+      donors: []
+    },
+    {
+      id: "huwelijksdiner",
+      title: "Huwelijksdiner",
+      target: 2000,
+      current: 0,
+      image: "https://picsum.photos/seed/lacocotte/800/450",
+      payLink: "#",
+      donors: []
+    },
+    {
+      id: "terras",
+      title: "Een nieuw terras",
+      target: 3000,
+      current: 0,
+      image: "https://picsum.photos/seed/terras/800/450",
+      payLink: "#",
+      donors: []
+    },
+    {
+      id: "overkapping",
+      title: "Een nieuwe overkapping in de tuin",
+      target: 3000,
+      current: 0,
+      image: "https://picsum.photos/seed/overkapping/800/450",
+      payLink: "#",
+      donors: []
+    }
+  ];
+
+  const currency = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+  function renderGoals(){
+    const root = document.getElementById('goals');
+    root.innerHTML = '';
+
+    goals.forEach(g => {
+      const totalGiven = g.donors.reduce((s,d)=> s + (Number(d.amount)||0), 0);
+      const current = Math.max(g.current, totalGiven); // toont iig ontvangen donorsom
+      const pct = Math.min(Math.round((current / g.target) * 100), 100);
+
+      const el = document.createElement('article');
+      el.className = 'card goal';
+      el.innerHTML = `
+        <div class="media"><img src="${g.image}" alt="${g.title}"></div>
+        <div class="body">
+          <div class="row" style="margin-bottom:6px">
+            <h3>${g.title}</h3>
+            <span class="pill">${pct}%</span>
+          </div>
+          <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
+          <div class="row" style="margin-top:8px">
+            <div class="amounts">
+              <span>Gestort: <strong>${currency.format(current)}</strong></span>
+              <span>Doel: <strong>${currency.format(g.target)}</strong></span>
+            </div>
+            <div class="cta">
+              <a class="btn primary" href="${g.payLink}" target="_blank" rel="noopener">Betaal mee</a>
+              <button class="btn ghost" onclick="copyIban('${g.id}')">Kopieer IBAN</button>
+            </div>
+          </div>
+          ${renderDonors(g)}
+        </div>
+      `;
+      root.appendChild(el);
+    })
+  }
+
+  function renderDonors(goal){
+    if(!goal.donors || goal.donors.length === 0){
+      return `<div class="donors muted">Nog geen publieke donaties getoond.</div>`;
+    }
+    const items = goal.donors.map(d => {
+      const amt = d.amount ? ` – ${currency.format(d.amount)}` : '';
+      const note = d.note ? `<div class="muted">${escapeHTML(d.note)}</div>` : '';
+      const name = d.name || 'Anoniem';
+      return `<li><strong>${escapeHTML(name)}</strong>${amt}${note}</li>`
+    }).join('');
+
+    return `
+      <div class="donors">
+        <details>
+          <summary>Bekijk donateurs (${goal.donors.length})</summary>
+          <ul>${items}</ul>
+        </details>
+      </div>
+    `;
+  }
+
+  function copyIban(goalId){
+    // Vervang door jullie IBAN
+    const IBAN = 'NL00INGB0123456789';
+    navigator.clipboard.writeText(IBAN).then(()=>{
+      alert('IBAN gekopieerd: ' + IBAN);
+    })
+  }
+
+  function escapeHTML(str){
+    return String(str).replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[s]));
+  }
+
+  renderGoals();
+</script>
+</body>
+</html>
