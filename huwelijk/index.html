@@ -8,9 +8,7 @@
   <!-- Favicon (inline SVG hartje) -->
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="%23ec4899" d="M47.5 8C42 8 36.9 10.8 34 15c-2.9-4.2-8-7-13.5-7C11.7 8 6 13.7 6 20.5 6 37 32 56 32 56s26-19 26-35.5C58 13.7 52.3 8 47.5 8z"/></svg>' />
   <style>
-    :root{
-      --bg:#f7f7f8; --card:#ffffff; --ink:#111827; --muted:#6b7280; --brand:#7c3aed; --brand-2:#ec4899; --ok:#10b981; --border:#e5e7eb;
-    }
+    :root{ --bg:#f7f7f8; --card:#ffffff; --ink:#111827; --muted:#6b7280; --brand:#7c3aed; --brand-2:#ec4899; --ok:#10b981; --border:#e5e7eb; }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family: Verdana, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
     a{color:inherit}
@@ -55,15 +53,15 @@
 </head>
 <body>
   <div class="container">
-    <header class="hero">
+    <header class="hero" role="banner">
       <h1>Welkom op onze huwelijks­pagina</h1>
       <p>Op <strong>15 september 2025</strong> geven wij elkaar het jawoord in het stadhuis van Rotterdam.<br>
       Geen grootse bruiloft vol pracht en praal, maar een intiem moment met de mensen die ons het meest dierbaar zijn.<br>
       Voor ons draait deze dag om wat écht telt: <strong>liefde, herinneringen en samen zijn</strong>.</p>
     </header>
 
-    <!-- TOP: twee kaarten naast elkaar op desktop -->
-    <div class="grid">
+    <div class="grid" role="main">
+      <!-- Linkerkolom -->
       <section class="card pad intro">
         <h2>Maak samen met ons herinneringen</h2>
         <p>In plaats van een traditioneel feest, sluiten we de dag af met een intiem diner bij <em>La Cocotte</em> in Hoogvliet — een avond vol warmte, goed eten en mooie gesprekken.</p>
@@ -78,7 +76,8 @@
         <div class="note"><strong>Privacy:</strong> we tonen alleen namen/bedragen die door de gever gedeeld mogen worden. Liever anoniem? Zet dat gerust in je omschrijving.</div>
       </section>
 
-      <aside class="card pad">
+      <!-- Rechterkolom: uitleg + totaal -->
+      <aside class="card pad" aria-label="Hoe werkt doneren?">
         <h2>Hoe werkt doneren?</h2>
         <ol>
           <li>Kies een doel hieronder en klik op <strong>Betaal mee</strong>.</li>
@@ -91,74 +90,169 @@
           t.n.v. <em>Hr&nbsp;L.A. Chrispijn</em> en/of <em>Hr&nbsp;D. Wildschut</em>
         </p>
         <div class="cta">
+          <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Doelen -->
+    <section class="goals" id="goals" aria-label="Doelen"></section>
+
+    <!-- Totaalkaart -->
+    <section class="card pad totals" id="totals" aria-live="polite"></section>
+
+    <footer>
+      <p>Dankjewel voor je liefde en steun. ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    // ------ Data ------
+    const currency = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+    /**
+     * Vul je eigen betaalverzoek-links en (optioneel) QR-afbeeldingen in.
+     * - payLink: directe link naar iDEAL/ING betaalverzoek
+     * - qr: optionele pad/URL naar QR-code afbeelding (png/jpg/svg)
+     */
+    const goals = [
+      {
+        id: 'huis',
+        title: 'Thuis & herinneringen',
+        target: 2500,
+        current: 0,
+        media: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c238?q=80&w=1200&auto=format&fit=crop',
+        payLink: '#',
+        qr: '',
+        donors: [
+          { name: 'Anoniem', amount: 50, note: 'Gefeliciteerd met jullie dag!' },
+          { name: 'Ouders', amount: 150 }
+        ]
+      },
+      {
+        id: 'tuin',
+        title: 'Groene tuin',
+        target: 1500,
+        current: 0,
+        media: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop',
+        payLink: '#',
+        qr: '',
+        donors: []
+      },
+      {
+        id: 'camper',
+        title: 'Camper-avonturen',
+        target: 3000,
+        current: 0,
+        media: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop',
+        payLink: '#',
+        qr: '',
+        donors: [{ name: 'Tante M.', amount: 100, note: 'Veel mooie reizen gewenst!' }]
+      }
+    ];
+
+    // ------ Rendering ------
+    function renderGoals(){
+      const root = document.getElementById('goals');
+      root.innerHTML = '';
+      goals.forEach(g => {
+        const el = document.createElement('article');
+        el.className = 'goal card';
+        const donorsSum = (g.donors||[]).reduce((s,d)=> s + (Number(d.amount)||0), 0);
+        const current = Math.max(Number(g.current)||0, donorsSum);
+        const pct = Math.min(Math.round((current / (g.target||1)) * 100), 100);
+        el.innerHTML = `
+          <a class="media" href="#${g.id}"><img src="${g.media}" alt="${escapeHTML(g.title)}" loading="lazy"></a>
+          <div class="body">
+            <div class="row" style="margin-bottom:4px">
+              <h3 id="${g.id}">${escapeHTML(g.title)}</h3>
+              <span class="pill">${pct}%</span>
+            </div>
+            <div class="progress" aria-label="voortgang voor ${escapeHTML(g.title)}"><span style="width:${pct}%"></span></div>
+            <div class="row" style="margin-top:8px">
+              <div class="amounts">
+                <span>Gestort: <strong>${currency.format(current)}</strong></span>
+                <span>Doel: <strong>${currency.format(g.target||0)}</strong></span>
+              </div>
+            </div>
+            <div class="cta">
               <a class="btn primary" href="${g.payLink}" target="_blank" rel="noopener">Betaal mee</a>
-              <img class="qr" src="${g.qr || (g.id + '.png')}" alt="QR ${g.title}" onerror="this.style.display='none'" title="Scan om direct te betalen">
+              ${g.qr ? `<img class="qr" src="${g.qr}" alt="QR ${escapeHTML(g.title)}" title="Scan om direct te betalen">` : ''}
               <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
             </div>
+            ${renderDonors(g)}
           </div>
-          ${renderDonors(g)}
+        `;
+        root.appendChild(el);
+      })
+    }
+
+    function renderDonors(goal){
+      if(!goal.donors || goal.donors.length === 0){
+        return `<div class="donors muted">Nog geen publieke donaties getoond.</div>`;
+      }
+      const items = goal.donors.map(d => {
+        const amt = d.amount ? ` – ${currency.format(d.amount)}` : '';
+        const note = d.note ? `<div class="muted">${escapeHTML(d.note)}</div>` : '';
+        const name = d.name || 'Anoniem';
+        return `<li><strong>${escapeHTML(name)}</strong>${amt}${note}</li>`
+      }).join('');
+
+      return `
+        <div class="donors">
+          <details>
+            <summary>Bekijk donateurs (${goal.donors.length})</summary>
+            <ul>${items}</ul>
+          </details>
         </div>
       `;
-      root.appendChild(el);
-    })
-  }
-
-  function renderDonors(goal){
-    if(!goal.donors || goal.donors.length === 0){
-      return `<div class="donors muted">Nog geen publieke donaties getoond.</div>`;
     }
-    const items = goal.donors.map(d => {
-      const amt = d.amount ? ` – ${currency.format(d.amount)}` : '';
-      const note = d.note ? `<div class="muted">${escapeHTML(d.note)}</div>` : '';
-      const name = d.name || 'Anoniem';
-      return `<li><strong>${escapeHTML(name)}</strong>${amt}${note}</li>`
-    }).join('');
 
-    return `
-      <div class="donors">
-        <details>
-          <summary>Bekijk donateurs (${goal.donors.length})</summary>
-          <ul>${items}</ul>
-        </details>
-      </div>
-    `;
-  }
+    function renderTotals(){
+      const totalsEl = document.getElementById('totals');
+      const target = goals.reduce((s,g)=> s + (Number(g.target)||0), 0);
+      const given = goals.reduce((s,g)=> {
+        const donorsSum = (g.donors||[]).reduce((x,d)=> x + (Number(d.amount)||0), 0);
+        const current = Math.max(Number(g.current)||0, donorsSum);
+        return s + current;
+      }, 0);
+      const pct = Math.min(Math.round((given/target)*100), 100);
+      totalsEl.innerHTML = `
+        <h3>Totaal voortgang</h3>
+        <div class="progress" aria-label="totale voortgang"><span style="width:${pct}%"></span></div>
+        <div class="row" style="margin-top:8px">
+          <div class="amounts">
+            <span>Gestort totaal: <strong>${currency.format(given)}</strong></span>
+            <span>Doel totaal: <strong>${currency.format(target)}</strong></span>
+          </div>
+          <span class="pill">${pct}%</span>
+        </div>`;
+    }
 
-  function copyIban(){
-    const IBAN = 'NL76INGB0797664378';
-    navigator.clipboard.writeText(IBAN).then(()=>{
-      alert('IBAN gekopieerd: ' + IBAN);
-    })
-  }
+    // ------ Utils ------
+    function copyIban(){
+      const IBAN = 'NL76INGB0797664378';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(IBAN).then(()=>{
+          alert('IBAN gekopieerd: ' + IBAN);
+        }).catch(()=>fallbackCopy(IBAN));
+      } else {
+        fallbackCopy(IBAN);
+      }
+    }
+    function fallbackCopy(text){
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); alert('IBAN gekopieerd: ' + text); }
+      finally{ document.body.removeChild(ta); }
+    }
+    function escapeHTML(str){
+      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[s]));
+    }
 
-  function escapeHTML(str){
-    return String(str).replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[s]));
-  }
-
-  renderGoals();
-  renderTotals();
-
-  function renderTotals(){
-    const totalsEl = document.getElementById('totals');
-    const target = goals.reduce((s,g)=> s + (Number(g.target)||0), 0);
-    const given = goals.reduce((s,g)=> {
-      const donorsSum = (g.donors||[]).reduce((x,d)=> x + (Number(d.amount)||0), 0);
-      const current = Math.max(Number(g.current)||0, donorsSum);
-      return s + current;
-    }, 0);
-    const pct = Math.min(Math.round((given/target)*100), 100);
-    const nf = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-    totalsEl.innerHTML = `
-      <h3>Totaal voortgang</h3>
-      <div class="progress" aria-label="totale voortgang"><span style="width:${pct}%"></span></div>
-      <div class="row" style="margin-top:8px">
-        <div class="amounts">
-          <span>Gestort totaal: <strong>${nf.format(given)}</strong></span>
-          <span>Doel totaal: <strong>${nf.format(target)}</strong></span>
-        </div>
-        <span class="pill">${pct}%</span>
-      </div>`;
-  }
-</script>
+    // Init
+    renderGoals();
+    renderTotals();
+  </script>
 </body>
 </html>
