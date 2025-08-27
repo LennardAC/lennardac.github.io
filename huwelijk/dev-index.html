@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Huwelijkscadeau – Lennard & Dylan</title>
+  <meta name="description" content="Huwelijkscadeaupagina van Lennard & Dylan – draag bij aan onze herinneringen i.p.v. spullen." />
+  <style>
+   /* ===== Zwart/Wit/Goud thema ===== */
+:root{
+  --bg:#111827;        /* achtergrond: bijna zwart (donkergrijs) */
+  --card:#1f2937;      /* kaart: donkergrijs */
+  --ink:#f9fafb;       /* hoofdtekst: bijna wit */
+  --muted:#9ca3af;     /* secundaire tekst */
+  --brand:#d4af37;     /* goud */
+  --brand-2:#f59e0b;   /* warm goud/oranje */
+  --ok:#10b981;        /* ok/groen (ongewijzigd) */
+  --border:#2d2d2d;    /* subtiele randen */
+}
+
+/* Basis */
+html,body{background:var(--bg);color:var(--ink);font-family: Verdana, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+a{color:var(--ink)}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+/* Hero: goud op donker, minder “glow” en meer diepte */
+header.hero{
+  background:
+    linear-gradient(135deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#fff;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+.hero p{color:rgba(255,255,255,.9)}
+/* Nieuw: gouden accenten in hero */
+.hero strong{color:var(--brand)}
+
+/* Grid en kaarten */
+.grid{display:grid;gap:20px;margin-top:24px}
+@media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+.card.pad{padding:20px}
+
+/* Titels & badges */
+.goal h3{font-weight:800; color:var(--brand)} /* Nieuw: goudkleurige doel-titels */
+.muted{color:var(--muted)}
+.pill{
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#111;
+  border:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+
+/* Progress bar in goud */
+.progress{
+  width:100%; height:14px;
+  background:rgba(212,175,55,.15);
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.35);
+}
+.progress > span{
+  height:100%; display:block;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  box-shadow:inset 0 0 6px rgba(0,0,0,.25);
+}
+
+/* Knoppen */
+.btn{
+  appearance:none; border:0; border-radius:999px;
+  padding:10px 16px; font-weight:800; cursor:pointer;
+  transition:transform .06s ease, box-shadow .25s ease, opacity .2s ease;
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#111;   /* leesbaar op goud */
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
+}
+.btn.primary:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.45)}
+.btn.ghost{
+  background:transparent; color:var(--ink);
+  border:1px solid var(--border);
+}
+.btn.ghost:hover{border-color:rgba(212,175,55,.6); box-shadow:0 4px 14px rgba(0,0,0,.35)}
+
+/* Lijntjes en subtiele accenten */
+.donors{border-top:1px dashed rgba(212,175,55,.25)}
+.donors details{
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);
+}
+.note{
+  background:rgba(245, 158, 11, .12);   /* warm subtiel */
+  border:1px solid rgba(245, 158, 11, .35);
+  color:#fbbf24;
+}
+
+/* QR-blok goud-accent */
+.qr{
+  margin-top:12px; padding:12px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);
+  border-radius:14px;
+  display:flex; align-items:center; gap:12px;
+}
+.qr .qr-media{
+  width:110px; height:110px; flex:0 0 110px;
+  border-radius:10px; overflow:hidden;
+  border:1px solid rgba(212,175,55,.35);
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  background:#0b0b0b;
+  display:grid; place-items:center;
+}
+.qr .qr-text{font-size:13px; color:var(--muted)}
+.qr .btn.small{padding:8px 12px; font-size:12px; font-weight:800}
+@media (max-width:480px){
+  .qr{flex-direction:column; align-items:stretch}
+}
+
+/* Afbeeldingen bovenin de goals mogen iets donkerder voor goud/wit tekst */
+.goal .media{height:180px;background:#222;display:block}
+.goal .media img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.95) contrast(1.05)}
+
+/* Nieuw: chique footer-lijn */
+footer{
+  margin:32px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  text-align:center;
+  border-top:1px solid rgba(212,175,55,.3);
+  padding-top:12px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Welkom op onze huwelijks­pagina</h1>
+      <p>
+        Op <strong>15 september 2025</strong> geven wij elkaar het <em>ja-woord</em> in het stadhuis van Rotterdam.<br>
+        Geen grootse bruiloft vol pracht en praal, maar een intiem moment met de mensen die ons het meest dierbaar zijn.<br>
+        Voor ons draait deze dag om wat écht telt: <strong>liefde, herinneringen en samen-zijn</strong>.
+      </p>
+    </header>
+
+    <div class="grid">
+      <section class="card pad intro">
+        <h2>Maak samen met ons herinneringen</h2>
+        <p>
+          In plaats van een traditioneel feest sluiten we onze dag af met een intiem diner bij <em>La Cocotte</em> in Hoogvliet — een mooi en sfeervol restaurant waar we vaker hebben gegeten en dat perfect past bij onze stijl. De avond mag ontspannen aanvoelen, maar ook levendig en feestelijk, met de huiselijke warmte van samen zijn met mensen die ons dierbaar zijn.
+        </p>
+        <p>
+          Ons hart ligt vooral bij het maken van herinneringen, maar soms zijn er ook dingen die daarbij helpen. Daarom vragen we geen lange verlanglijst vol spullen, maar steun voor wat ons leven samen verrijkt — of dat nu een ervaring is of iets moois voor ons huis, de tuin of onze toekomstige camper.
+        </p>
+        <ul>
+          <li>Oud worden in ons huis, dat we in februari kochten, samen verbouwden en waar we nog steeds de laatste verhuisdozen aan het opruimen zijn</li>
+          <li>Genieten van onze groene tuin, onze plek van rust en ontspanning</li>
+          <li>Er samen op uit gaan met een camper — geïnspireerd door onze reis door Denemarken vorig jaar, die veel te snel voorbij was en smaakte naar meer</li>
+        </ul>
+        <p>
+          Onze gasten zijn een combinatie van familie en vrienden: onze “inner circle” die ons verhaal van dichtbij heeft meegemaakt. Want ons verhaal begon bij het Rode Kruis, waar we elkaar leerden kennen tijdens vrijwilligerswerk. Samen groeien, lachen, helpen en ontdekken heeft ons gebracht waar we nu zijn.
+        </p>
+        <p>
+          Jullie aanwezigheid op deze dag is ons grootste cadeau. Wil je ons toch verrassen, dan kun je hieronder bijdragen aan onze doelen — aan herinneringen die we ons hele leven zullen koesteren. Zo help je mee om nieuwe hoofdstukken te schrijven in het verhaal dat we samen begonnen. ❤️
+        </p>
+        <div class="note">
+          <strong>Privacy:</strong> we tonen alleen namen die door de gever gedeeld mogen worden. Liever anoniem? Zet dat gerust in je omschrijving.
+        </div>
+      </section>
+
+      <aside class="card pad">
+        <h2>Hoe werkt doneren?</h2>
+        <ol>
+          <li>Kies hieronder het doel dat je wilt steunen.</li>
+          <li>Klik op <strong>Betaal mee</strong> om direct via de betaallink te betalen, of kies <strong>Kopieer IBAN</strong> om het bedrag zelf over te maken.</li>
+          <li>Optioneel: zet je naam en een korte wens in de omschrijving.</li>
+        </ol>
+        <br>
+        <h4>Liever klassiek?</h4>
+        <p>
+          Contant mag natuurlijk ook: stop het in een envelop met een lieve boodschap, een mooie wens of een knipoog in woorden — zulke dingen bewaren we met een grote glimlach en lezen we later graag nog eens terug. 💌 Geef het ons van tevoren of gezellig tijdens het etentje.
+        </p>
+        <br><br>
+        <p><strong>IBAN</strong><br>
+          NL76&nbsp;INGB&nbsp;0797&nbsp;6643&nbsp;78<br>
+          t.n.v. <em>Hr&nbsp;L.A. Chrispijn</em> en/of <em>Hr&nbsp;D. Wildschut</em>
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://www.ing.nl/payreq/m/?trxid=tEyCyPgnfIVoyoCx3BvQwijwhx9h5h6C" target="_blank" rel="noopener">Betaal mee</a>
+          <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
+        </div>
+        <br><br>
+        <p class="muted" style="margin-top:10px">
+          Alle betalingen komen <strong>direct</strong> bij ons binnen, zonder tussenkomst van een platform dat een percentage inhoudt.
+        </p>
+        <p class="muted">
+          Deze pagina is door Lennard zelf gemaakt. Meer info: <a href="https://lennardac.dev/">LennardAC.Dev</a>
+        </p>
+        <p class="muted">
+          Tip: sla deze pagina op; we werken de voortgangsbalken handmatig bij op basis van ontvangen bijdragen.
+        </p>
+      </aside>
+    </div>
+
+    <!-- DOELEN -->
+    <section class="goals" id="goals"></section>
+
+    <footer>
+      <p>© 2025 Lennard & Dylan — bedankt voor jullie liefde en steun.</p>
+    </footer>
+  </div>
+
+<script>
+  // ====== CONFIG ======
+  // Nieuw: 'qr' met bestandsnaam van de QR-code (jpeg/png) in dezelfde map.
+  const goals = [
+    {
+      id: "camper",
+      title: "Huwelijksreis – Camperhuur",
+      desc: "Een paar weken vrijheid op wielen – wakker worden waar de zon schijnt.",
+      target: 2500,
+      current: 0,
+      image: "https://www.pleinair.it/wp-content/uploads/2022/07/2022-07-26-roadsurfer_1.jpg",
+      qr: "Huwelijksreis.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=vRnQ5ijIEhQUmpg17EneJWefBfI1t1ty",
+      donors: []
+    },
+    {
+      id: "diner",
+      title: "Huwelijksreis – Uit eten voor 2",
+      desc: "Een avond tafelen tijdens de reis – proosten op vandaag en morgen.",
+      target: 200,
+      current: 0,
+      image: "https://cdn.culinaireambiance.com/storage/wp-content/uploads/2023/02/valentijn_resize_1400.png",
+      qr: "Uiteten.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=SjFL2BlSWCi5WuYeaoUBHtIBhWps8QWz",
+      donors: []
+    },
+    {
+      id: "souvenirs",
+      title: "Huwelijksreis – Souvenirs",
+      desc: "Kleine herinneringen die thuis een plek krijgen.",
+      target: 500,
+      current: 0,
+      image: "https://www.radbag.nl/blog/wp-content/uploads/2016/06/new-header.png",
+      qr: "Souvenirs.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=ClhfQ3bcuSQLxvTnRo3t98FJmvdBnfel",
+      donors: []
+    },
+    {
+      id: "huwelijksdiner",
+      title: "Huwelijksdiner",
+      desc: "Intiem private dining bij La Cocotte met onze naasten.",
+      target: 2000,
+      current: 0,
+      image: "https://vanderwaaltuinendesign.nl/wp-content/uploads/2024/02/Tuinontwerp-en-tuinaaneg-restauranttuin-Rhoon.jpg",
+      qr: "Diner.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=nwa8OU6GRiTFAGWfR7UQNVAonHeW35Xv",
+      donors: []
+    },
+    {
+      id: "terras",
+      title: "Een nieuw terras",
+      desc: "Onze buitenwoonkamer waar we koffie drinken en vrienden ontvangen.",
+      target: 3000,
+      current: 0,
+      image: "https://images.ctfassets.net/q86gtiaxvkje/7urTbchS4QmKcoq3mFveMS/a56dba69c744679dd4a36e1b52d18a31/Felixwood-wpc-composiet-terrasplanken__1_.jpeg?bg=%2300000000&fit=thumb&w=1440&f=center&q=80&fm=webp",
+      qr: "Terras.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=k7mQRo7amOq6Zf64QCW8FxLgKjSY44R4",
+      donors: []
+    },
+    {
+      id: "overkapping",
+      title: "Een nieuwe overkapping in de tuin",
+      desc: "Droog in de regen - het hele jaar door buiten.",
+      target: 3000,
+      current: 0,
+      image: "https://www.tuinspecialist.nl/media/catalog/product/cache/3450c7c5f0abaf426863f7c4e407f8cc/1/e/1e_6m_structure_shed_br_m_landscape_01.jpg",
+      qr: "Overkapping.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=K4AMQjbMDCJL1XoD341N8ofBXeOiSzlM",
+      donors: []
+    }
+  ];
+
+  const currency = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+  function renderGoals(){
+    const root = document.getElementById('goals');
+    root.innerHTML = '';
+
+    goals.forEach(g => {
+      const totalGiven = g.donors.reduce((s,d)=> s + (Number(d.amount)||0), 0);
+      const current = Math.max(g.current, totalGiven); // toont iig ontvangen donorsom
+      const pct = Math.min(Math.round((current / g.target) * 100), 100);
+
+      const el = document.createElement('article');
+      el.className = 'card goal';
+      el.innerHTML = `
+        <div class="media"><img src="${g.image}" alt="${escapeHTML(g.title)}" loading="lazy"></div>
+        <div class="body">
+          <div class="row" style="margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; gap:12px">
+            <div>
+              <h3 style="margin-bottom:4px">${g.title}</h3>
+              ${g.desc ? `<p class="muted" style="margin:0">${escapeHTML(g.desc)}</p>` : ``}
+            </div>
+            <span class="pill" aria-label="voortgang in procenten">${pct}%</span>
+          </div>
+          <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
+          <div class="row" style="margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:12px">
+            <div class="amounts" aria-live="polite" style="display:flex; gap:10px; font-size:12px; color:var(--muted)">
+              <span>Gestort: <strong>${currency.format(current)}</strong></span>
+              <span>Doel: <strong>${currency.format(g.target)}</strong></span>
+            </div>
+          </div>
+
+          ${renderQR(g)}
+
+          ${renderDonors(g)}
+        </div>
+      `;
+      root.appendChild(el);
+    })
+  }
+
+  // QR-blok per doel (alleen tonen als 'qr' is ingevuld)
+  function renderQR(goal){
+    if(!goal.qr) return '';
+    const title = `QR-code voor ${goal.title}`;
+    return `
+      <div class="qr" role="group" aria-label="${escapeHTML(title)}">
+        <div class="qr-media">
+          <img src="${goal.qr}" alt="${escapeHTML(title)}" loading="lazy">
+        </div>
+        <div class="qr-text">
+          Scan de QR met je bankapp om direct een bijdrage te doen.<br>
+          Liever een link? Gebruik de knop <strong>Betaal mee</strong>.
+        </div>
+        <div class="qr-actions">
+          <a class="btn small primary" href="${goal.payLink}" target="_blank" rel="noopener" aria-label="Open betaallink voor ${escapeHTML(goal.title)}">Betaal mee</a>
+          <a class="btn small ghost" href="${goal.qr}" download>Download QR</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDonors(goal){
+    if(!goal.donors || goal.donors.length === 0){
+      return `<div class="donors muted">Nog geen publieke donaties getoond.</div>`;
+    }
+    const items = goal.donors.map(d => {
+      const amt = d.amount ? ` – ${currency.format(d.amount)}` : '';
+      const note = d.note ? `<div class="muted">${escapeHTML(d.note)}</div>` : '';
+      const name = d.name || 'Anoniem';
+      return `<li><strong>${escapeHTML(name)}</strong>${amt}${note}</li>`
+    }).join('');
+
+    return `
+      <div class="donors">
+        <details>
+          <summary>Bekijk donateurs (${goal.donors.length})</summary>
+          <ul>${items}</ul>
+        </details>
+      </div>
+    `;
+  }
+
+  function copyIban(){
+    const IBAN = 'NL76INGB0797664378';
+    navigator.clipboard.writeText(IBAN).then(()=>{
+      alert('IBAN gekopieerd: ' + IBAN);
+    })
+  }
+
+  function escapeHTML(str){
+    return String(str).replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[s]));
+  }
+
+  renderGoals();
+</script>
+</body>
+</html>
