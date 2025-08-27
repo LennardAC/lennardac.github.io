@@ -257,6 +257,11 @@
             <span class="pill" aria-label="voortgang in procenten">${pct}%</span>
           </div>
           <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
+          <div class="row" style="margin-top:8px">
+            <div class="amounts" aria-live="polite">
+              <span>Gestort: <strong>${currency.format(current)}</strong></span>
+              <span>Doel: <strong>${currency.format(g.target)}</strong></span>
+            </div>
           </div>
 
           ${renderQR(g)}
