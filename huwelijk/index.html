@@ -45,6 +45,38 @@
     footer{margin:32px 0 0;color:var(--muted);font-size:12px;text-align:center}
     .intro p{line-height:1.75}
     .note{background:#fef3c7;border:1px solid #fde68a;color:#92400e;padding:10px;border-radius:10px}
+
+    /* ===== QR styling ===== */
+    .qr{
+      margin-top:12px;
+      padding:12px;
+      background:#fcfcfd;
+      border:1px solid var(--border);
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .qr .qr-media{
+      width:110px; height:110px; flex:0 0 110px;
+      border-radius:10px; overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 4px 12px rgba(17,24,39,.06);
+      background:#fff;
+      display:grid; place-items:center;
+    }
+    .qr .qr-media img{
+      width:100%; height:100%; object-fit:contain;
+    }
+    .qr .qr-text{
+      font-size:13px; color:var(--muted); line-height:1.5;
+    }
+    .qr .qr-actions{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
+    .qr .btn.small{padding:8px 12px; font-size:12px; font-weight:700}
+    @media (max-width:480px){
+      .qr{flex-direction:column; align-items:stretch}
+      .qr .qr-actions{margin-left:0}
+    }
   </style>
 </head>
 <body>
@@ -56,7 +88,7 @@
       Voor ons draait deze dag om wat écht telt: <strong>liefde, herinneringen en samen zijn</strong>.</p>
     </header>
 
-    <!-- TOP: twee kaarten naast elkaar op desktop -->
+													  
     <div class="grid">
       <section class="card pad intro">
           <h2>Maak samen met ons herinneringen</h2>
@@ -90,24 +122,24 @@
           <li>Klik op <strong>Betaal mee</strong> om direct via de betaallink te betalen, of kies <strong>Kopieer IBAN</strong> om het bedrag zelf over te maken.</li>
           <li>Optioneel: zet je naam en een korte wens in de omschrijving.</li>
         </ol>
-      </br>
+        <br>
         <h4>Liever klassiek?</h4>
         <p>
           Contant mag natuurlijk ook: stop het in een envelop met een lieve boodschap, een mooie wens of een knipoog in woorden — zulke dingen bewaren we met een grote glimlach en lezen we later graag nog eens terug. 💌 Geef het ons van tevoren of gezellig tijdens het etentje.
         </p>
-      </br>
-      </br>
+		   
+        <br><br>
         <p><strong>IBAN</strong><br>
           NL76&nbsp;INGB&nbsp;0797&nbsp;6643&nbsp;78<br>
           t.n.v. <em>Hr&nbsp;L.A. Chrispijn</em> en/of <em>Hr&nbsp;D. Wildschut</em>
         </p>
-      
+	  
         <div class="cta">
           <a class="btn primary" href="#" target="_blank" rel="noopener">Betaal mee</a>
           <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
         </div>
-      </br>
-        </br>
+		   
+        <br><br>
         <p class="muted" style="margin-top:10px">
           Alle betalingen komen <strong>direct</strong> bij ons binnen, zonder tussenkomst van een platform dat een percentage inhoudt.
         </p>
@@ -131,7 +163,7 @@
 
 <script>
   // ====== CONFIG ======
-  // Vul/aanpassen: doelbedragen, huidige stand, donateurs en betaallinks/QR.
+  // Nieuw: 'qr' met bestandsnaam van de QR-code (jpeg/png) in dezelfde map.
   const goals = [
     {
       id: "camper",
@@ -140,7 +172,8 @@
       target: 2500,
       current: 0,
       image: "https://www.pleinair.it/wp-content/uploads/2022/07/2022-07-26-roadsurfer_1.jpg",
-      payLink: "#", // vervang door je ING-betaalverzoek of iDEAL-link
+      qr: "huwelijksreis.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=vRnQ5ijIEhQUmpg17EneJWefBfI1t1ty",
       donors: []
     },
     {
@@ -150,7 +183,8 @@
       target: 200,
       current: 0,
       image: "https://cdn.culinaireambiance.com/storage/wp-content/uploads/2023/02/valentijn_resize_1400.png",
-      payLink: "#",
+      qr: "Uiteten.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=SjFL2BlSWCi5WuYeaoUBHtIBhWps8QWz",
       donors: []
     },
     {
@@ -160,7 +194,8 @@
       target: 500,
       current: 0,
       image: "https://www.radbag.nl/blog/wp-content/uploads/2016/06/new-header.png",
-      payLink: "#",
+      qr: "Souvenirs.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=ClhfQ3bcuSQLxvTnRo3t98FJmvdBnfel",
       donors: []
     },
     {
@@ -170,7 +205,8 @@
       target: 2000,
       current: 0,
       image: "https://vanderwaaltuinendesign.nl/wp-content/uploads/2024/02/Tuinontwerp-en-tuinaaneg-restauranttuin-Rhoon.jpg",
-      payLink: "#",
+      qr: "Diner.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=nwa8OU6GRiTFAGWfR7UQNVAonHeW35Xv",
       donors: []
     },
     {
@@ -180,7 +216,8 @@
       target: 3000,
       current: 0,
       image: "https://images.ctfassets.net/q86gtiaxvkje/7urTbchS4QmKcoq3mFveMS/a56dba69c744679dd4a36e1b52d18a31/Felixwood-wpc-composiet-terrasplanken__1_.jpeg?bg=%2300000000&fit=thumb&w=1440&f=center&q=80&fm=webp",
-      payLink: "#",
+      qr: "Terras.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=k7mQRo7amOq6Zf64QCW8FxLgKjSY44R4",
       donors: []
     },
     {
@@ -190,7 +227,8 @@
       target: 3000,
       current: 0,
       image: "https://www.tuinspecialist.nl/media/catalog/product/cache/3450c7c5f0abaf426863f7c4e407f8cc/1/e/1e_6m_structure_shed_br_m_landscape_01.jpg",
-      payLink: "#",
+      qr: "Overkapping.jpeg",
+      payLink: "https://www.ing.nl/payreq/m/?trxid=K4AMQjbMDCJL1XoD341N8ofBXeOiSzlM",
       donors: []
     }
   ];
@@ -209,18 +247,18 @@
       const el = document.createElement('article');
       el.className = 'card goal';
       el.innerHTML = `
-        <div class="media"><img src="${g.image}" alt="${g.title}"></div>
+        <div class="media"><img src="${g.image}" alt="${escapeHTML(g.title)}" loading="lazy"></div>
         <div class="body">
           <div class="row" style="margin-bottom:6px">
             <div>
               <h3 style="margin-bottom:4px">${g.title}</h3>
-              ${g.desc ? `<p class=\"muted\" style=\"margin:0\">${escapeHTML(g.desc)}</p>` : ``}
+              ${g.desc ? `<p class="muted" style="margin:0">${escapeHTML(g.desc)}</p>` : ``}
             </div>
-            <span class="pill">${pct}%</span>
+            <span class="pill" aria-label="voortgang in procenten">${pct}%</span>
           </div>
           <div class="progress" aria-label="voortgang"><span style="width:${pct}%"></span></div>
           <div class="row" style="margin-top:8px">
-            <div class="amounts">
+            <div class="amounts" aria-live="polite">
               <span>Gestort: <strong>${currency.format(current)}</strong></span>
               <span>Doel: <strong>${currency.format(g.target)}</strong></span>
             </div>
@@ -229,11 +267,35 @@
               <button class="btn ghost" onclick="copyIban()">Kopieer IBAN</button>
             </div>
           </div>
+
+          ${renderQR(g)}
+
           ${renderDonors(g)}
         </div>
       `;
       root.appendChild(el);
     })
+  }
+
+  // QR-blok per doel (alleen tonen als 'qr' is ingevuld)
+  function renderQR(goal){
+    if(!goal.qr) return '';
+    const title = `QR-code voor ${goal.title}`;
+    return `
+      <div class="qr" role="group" aria-label="${escapeHTML(title)}">
+        <div class="qr-media">
+          <img src="${goal.qr}" alt="${escapeHTML(title)}" loading="lazy">
+        </div>
+        <div class="qr-text">
+          Scan de QR met je bankapp om direct een bijdrage te doen.<br>
+          Liever een link? Gebruik de knop <strong>Betaal mee</strong>.
+        </div>
+        <div class="qr-actions">
+          <a class="btn small primary" href="${goal.payLink}" target="_blank" rel="noopener" aria-label="Open betaallink voor ${escapeHTML(goal.title)}">Betaal mee</a>
+          <a class="btn small ghost" href="${goal.qr}" download>Download QR</a>
+        </div>
+      </div>
+    `;
   }
 
   function renderDonors(goal){
