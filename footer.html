@@ -1,5 +1,6 @@
 <footer class="footer">
-  <p>© 1998–<span id="year"></span> Lennard Adrianus Chrispijn – alle rechten voorbehouden.</p>
+  <p id="copyright"></p>
+
   <p>Sinds 1998 nieuwsgierig, sinds 2015 serieus, sinds 2018 professioneel.</p>
   <p>Deze website en de inhoud zijn onderworpen aan gebruiksvoorwaarden.</p>
 
@@ -18,5 +19,6 @@
 </footer>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("copyright").textContent =
+    `© 1998–${new Date().getFullYear()} Lennard Adrianus Chrispijn – alle rechten voorbehouden.`;
 </script>
