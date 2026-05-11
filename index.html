@@ -19,30 +19,43 @@
 
   <div id="site-footer"></div>
 
-  <script>
-    async function loadPartial(id, file) {
-      const target = document.getElementById(id);
-      if (target) {
-        try {
-          const res = await fetch(file);
-          if (res.ok) {
-            target.innerHTML = await res.text();
-          } else {
-            target.innerHTML = `<p>Kon <code>${file}</code> niet laden.</p>`;
+<script>
+  async function loadPartial(id, file) {
+    const target = document.getElementById(id);
+
+    if (target) {
+      try {
+        const res = await fetch(file);
+
+        if (res.ok) {
+          target.innerHTML = await res.text();
+
+          // Jaar automatisch invullen na laden footer
+          if (id === "site-footer") {
+            const year = document.getElementById("year");
+
+            if (year) {
+              year.textContent = new Date().getFullYear();
+            }
           }
-        } catch (e) {
-          target.innerHTML = `<p>Fout bij laden van <code>${file}</code>.</p>`;
+
+        } else {
+          target.innerHTML = `<p>Kon <code>${file}</code> niet laden.</p>`;
         }
+
+      } catch (e) {
+        target.innerHTML = `<p>Fout bij laden van <code>${file}</code>.</p>`;
       }
     }
+  }
 
-    loadPartial("site-header", "header.html");
-    loadPartial("manifest", "manifest.html");
-    loadPartial("site-footer", "footer.html");
-    loadPartial("over-mij-content", "over-mij.html");
-    loadPartial("projecten-content", "projecten.html");
-    loadPartial("contact-content", "contact.html");
-    loadPartial("inspiratie-content", "inspiratie.html");
-  </script>
+  loadPartial("site-header", "header.html");
+  loadPartial("manifest", "manifest.html");
+  loadPartial("site-footer", "footer.html");
+  loadPartial("over-mij-content", "over-mij.html");
+  loadPartial("projecten-content", "projecten.html");
+  loadPartial("contact-content", "contact.html");
+  loadPartial("inspiratie-content", "inspiratie.html");
+</script>
 </body>
 </html>
